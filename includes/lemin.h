@@ -12,7 +12,7 @@
 
 #ifndef LEMIN_H
 # define LEMIN_H
-# define MALL_CHECK(x) if (!x) return (1);
+# define MALL_CHECK(x) if (!(x)) return (1);
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -51,6 +51,7 @@ typedef struct	s_info
 uintmax_t	read_file(t_info *info);
 int 		parse_room(char *line, t_info *info);
 t_room		*find_room(char *name, t_info *info);
+int 	parse_edge(char *line, t_info *info);
 void	print_error(char *text);
 int 	is_command(char *str);
 int 	is_room(char *str);
