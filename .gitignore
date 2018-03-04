@@ -56,3 +56,4 @@ objects/
 *.swp
 
 *.trace
+./idea
