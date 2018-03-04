@@ -65,18 +65,18 @@ int 		parse_command(char **line, t_info *info)
 	return (0);
 }
 
-static int	parse_line(char *line, t_info *info, int *room_parsed)
+static int	parse_line(char **line, t_info *info, int *room_parsed)
 {
-	if (is_comment(line))
+	if (is_comment(*line))
 		return (0);
-	else if (is_command(line))
-		return (parse_command(&line, info));
-	else if (!(*room_parsed) && is_room(line))
-		return (parse_room(line, info));
-	else if (is_edge(line))
+	else if (is_command(*line))
+		return (parse_command(line, info));
+	else if (!(*room_parsed) && is_room(*line))
+		return (parse_room(*line, info));
+	else if (is_edge(*line))
 	{
 		*room_parsed = 1;
-		return (parse_edge(line, info));
+		return (parse_edge(*line, info));
 	}
 	else
 		return (1);
