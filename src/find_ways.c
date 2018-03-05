@@ -12,9 +12,31 @@
 
 #include "lemin.h"
 
-void	find_ways(t_info *info, t_way *ways)
+static unsigned int	get_edges_num(t_room *room)
 {
-	int 	max_ways;
+	t_edge			*tmp;
+	unsigned int	num;
+
+	tmp = room->edges;
+	num = 0;
+	while (tmp)
+	{
+		num++;
+		tmp = tmp->next;
+	}
+	return (num);
+}
+
+
+void				find_ways(t_info *info, t_way *ways)
+{
+	unsigned int	max_ways;
+
+
+	if (get_edges_num(info->start) < get_edges_num(info->end))
+		max_ways = get_edges_num(info->start);
+	else
+		max_ways = get_edges_num(info->end);
 
 
 }

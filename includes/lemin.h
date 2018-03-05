@@ -39,6 +39,7 @@ typedef struct		s_edge
 typedef struct		s_way
 {
 	t_edge			*edges;
+	uintmax_t		len;
 	struct s_way	*next;
 }					t_way;
 
