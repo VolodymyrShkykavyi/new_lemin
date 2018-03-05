@@ -20,12 +20,6 @@ static void	set_weight(t_room *room)
 		return ;
 	tmp_edge = room->edges;
 	room->visited = 1;
-	if (!tmp_edge || !tmp_edge->next)
-		if (room->weight != 1)
-		{
-			room->weight = -1;
-			return ;
-		}
 	while (tmp_edge)
 	{
 		if (!tmp_edge->room->weight ||
@@ -46,9 +40,8 @@ void		valid_and_set_weight(t_info *info)
 
 	if (!info->start || !info->end || !info->start->edges || !info->end->edges)
 		print_error("can't find start/end pos");
-	info->end->visited = 1;
+	info->end->visited = 0;
 	info->start->weight = 1;
-	info->end->weight = 1;
 	set_weight(info->start);
 	tmp_edge = info->end->edges;
 	while (tmp_edge)
