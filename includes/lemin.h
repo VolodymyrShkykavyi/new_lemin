@@ -44,6 +44,9 @@ typedef struct	s_info
 	t_room		*end;
 }				t_info;
 
+
+void 	print_rooms(t_info *info);
+
 /*
 ** returns the number of read lines
 */
@@ -51,6 +54,7 @@ typedef struct	s_info
 uintmax_t	read_file(t_info *info);
 int 		parse_room(char *line, t_info *info);
 t_room		*find_room(char *name, t_info *info);
+void 	valid_and_set_weight(t_info *info);
 int 	parse_edge(char *line, t_info *info);
 void	print_error(char *text);
 int 	is_command(char *str);

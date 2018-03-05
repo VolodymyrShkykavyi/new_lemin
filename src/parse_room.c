@@ -50,6 +50,7 @@ int 		parse_room(char *line, t_info *info)
 		return (3);
 	info->rooms = room;
 	ft_free_2arr(arr);
+	ft_printf("save room\n");
 	return (0);
 }
 

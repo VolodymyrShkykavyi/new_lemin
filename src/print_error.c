@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lemin.h"
+
 void	print_error(char *str)
 {
 	ft_putstr("ERROR\n");
-	//ft_putstr_fd(str, 2);
+	ft_putstr_fd(str, 2);
 	exit(0);
 }

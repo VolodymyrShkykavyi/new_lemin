@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lemin.h"
+
 int		is_comment(char *str)
 {
 	if (!str || !(*(str + 1)))
@@ -44,7 +46,7 @@ int 	is_room(char *str)
 		return (0);
 	if (*str == '#')
 		return (0);
-	while (*str && str != ' ')
+	while (*str && *str != ' ')
 		str++;
 	if (!(*str))
 		return (0);

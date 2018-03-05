@@ -101,12 +101,14 @@ uintmax_t	read_file(t_info *info)
 			print_error("can't read file");
 		if (parse_line(&line, info, &room_parsed))
 		{
+			ft_printf("some read error\n");
 			ft_strdel(&line);
 			break;
 		}
 		if (is_command_support(line))
 			num_lines++;
 		num_lines++;
+		ft_printf("line: %s\n", line);
 		ft_strdel(&line);
 	}
 	close(info->fd);

@@ -5,8 +5,8 @@ OBJ_DIR = objects
 SRC_DIR = src
 O_FILES = $(addprefix $(OBJ_DIR)/, $(C_FILES:$(SRC_DIR)/%.c=%.o))
 C_FILES = $(addprefix $(SRC_DIR)/, main.c read_file.c print_error.c \
-			find_room.c get_ant_num.c parse_command.c parse_edge.c \
-			parse_room.c)
+			parse_room.c  parse_edge.c support_func.c valid_and_set_weight.c \
+			tmp_debug.c)
 INCLUDES = -I libft/includes -I includes/
 
 all: $(NAME)
