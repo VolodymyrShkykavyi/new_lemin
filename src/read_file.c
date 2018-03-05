@@ -42,42 +42,71 @@ void	get_ant_num(t_info *info, uintmax_t *num_lines)
 
 int 		parse_command(char **line, t_info *info)
 {
-	if (is_command_support(*line))
+/*	if (is_command_support(*line))
+	{
+		if (get_next_line(info->fd, line) <= 0)
+			print_error("can't read file");
+	}
+	else
+		return (0);*/
+	if (ft_strcmp("##start", *line) == 0)
 	{
 		ft_strdel(line);
 		if (get_next_line(info->fd, line) <= 0)
 			print_error("can't read file");
-		if (parse_room(*line, info))
-			return (1);
-	}
-	else
-		return (0);
-	if (ft_strcmp("##start", *line) == 0)
-	{
 		if (info->start)
 			return (1);
+		if (parse_room(*line, info))
+		{
+			ft_printf("supported command error parse room\n");
+			return (1);
+		}
+		ft_printf("{start command}\n");
 		info->start = info->rooms;
 		info->start->weight = 1;
 	}
 	else if (ft_strcmp("##end", *line) == 0)
 	{
+		ft_strdel(line);
+		if (get_next_line(info->fd, line) <= 0)
+			print_error("can't read file");
 		if (info->end)
+		{
+			ft_printf("multi_end\n");
 			return (1);
+		}
+		ft_printf("{end command}\n");
+		if (parse_room(*line, info))
+		{
+			ft_printf("supported command error parse room\n");
+			return (1);
+		}
 		info->end = info->rooms;
 		info->end->weight = 1;
 	}
+	return (0);
 }
 
 static int	parse_line(char **line, t_info *info, int *room_parsed)
 {
 	if (is_comment(*line))
+	{
+		ft_printf("comment - ");
 		return (0);
+	}
 	else if (is_command(*line))
+	{
+		ft_printf("command - ");
 		return (parse_command(line, info));
+	}
 	else if (!(*room_parsed) && is_room(*line))
+	{
+		ft_printf("room parse - ");
 		return (parse_room(*line, info));
+	}
 	else if (is_edge(*line))
 	{
+		ft_printf("edge - ");
 		*room_parsed = 1;
 		return (parse_edge(*line, info));
 	}
@@ -101,7 +130,7 @@ uintmax_t	read_file(t_info *info)
 			print_error("can't read file");
 		if (parse_line(&line, info, &room_parsed))
 		{
-			ft_printf("some read error\n");
+			ft_printf("some read error in %s\n", line);
 			ft_strdel(&line);
 			break;
 		}

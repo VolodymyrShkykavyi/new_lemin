@@ -14,10 +14,11 @@
 
 int		is_comment(char *str)
 {
-	if (!str || !(*(str + 1)))
+	if (!str || !str[1])
 		return (0);
-	if (*str == '#' && *(str + 1) != '#')
+	if (str[0] == '#' && str[1] != '#')
 		return (1);
+	return (0);
 }
 
 int 	is_edge(char *str)
@@ -55,6 +56,7 @@ int 	is_room(char *str)
 		str++;
 	if (!(*str) || *str != ' ')
 		return (0);
+	str++;
 	while (*str && ft_isdigit(*str))
 		str++;
 	if (!(*str))

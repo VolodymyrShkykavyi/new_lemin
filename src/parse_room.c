@@ -34,8 +34,9 @@ int 		parse_room(char *line, t_info *info)
 	char	**arr;
 
 	MALL_CHECK(arr = ft_strsplit(line, ' '))
-	if (!arr[1] || !arr[2] || !arr[3])
+	if (!arr[0] || !arr[1] || !arr[2] || arr[3])
 	{
+		ft_printarr(arr);
 		ft_free_2arr(arr);
 		return (2);
 	}
