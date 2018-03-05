@@ -22,10 +22,12 @@ void 	print_rooms(t_info *info)
 	while (room)
 	{
 		if (room == info->start)
-			printf("*start* ");
+			printf("%-19s", "\033[32m*start*\033[0m");
 		else if (room == info->end)
-			printf("*end* ");
-		printf("name: %s,\t\tx: %d, y: %d, weight: %d\n\tedges{", room->name, room->x, room->y, room->weight);
+			printf("%-19s", "\033[33m*end*\033[0m");
+		else
+			printf("%10c", ' ');
+		printf("name: %-20s\t|x: %-3d\t|y: %-3d\t|weight: %-3d\tedges{", room->name, room->x, room->y, room->weight);
 		edge = room->edges;
 		while (edge)
 		{

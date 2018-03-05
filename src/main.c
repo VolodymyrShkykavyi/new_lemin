@@ -25,6 +25,7 @@ int		main(int argc, char **argv)
 {
 	int			fd;
 	t_info		info;
+	t_way		*ways;
 	uintmax_t	lines;
 
 	if (argc == 2)
@@ -33,6 +34,7 @@ int		main(int argc, char **argv)
 		fd = 0;
 	init_info(fd, &info);
 	lines = read_file(&info);
-	print_rooms(&info);
 	valid_and_set_weight(&info);
+	print_rooms(&info);
+	//find_ways(&info, ways);
 }

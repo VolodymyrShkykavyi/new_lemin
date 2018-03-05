@@ -7,4 +7,16 @@ set(CMAKE_C_STANDARD 99)
 include_directories(${CMAKE_SOURCE_DIR}/libft/includes)
 include_directories(${CMAKE_SOURCE_DIR}/includes)
 
-add_executable(lem_in2 src/main.c)
+add_executable(lem_in src/main.c
+        src/print_error.c
+        src/parse_edge.c
+        src/parse_room.c
+        src/read_file.c
+        src/support_func.c
+        src/tmp_debug.c
+        src/valid_and_set_weight.c)
+
+add_library(libft STATIC IMPORTED) # Создание статической библиотеки
+set_property(TARGET libft PROPERTY
+        IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libft/libft.a)
+target_link_libraries(lem_in libft)  # Линковка программы с библиотекой

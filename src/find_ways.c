@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   find_ways.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vshkykav <vshkykav@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 22:26:00 by vshkykav          #+#    #+#             */
-/*   Updated: 2018/03/04 22:26:00 by vshkykav         ###   ########.fr       */
+/*   Created: 2018/03/05 19:15:00 by vshkykav          #+#    #+#             */
+/*   Updated: 2018/03/05 19:15:00 by vshkykav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	print_error(char *str)
+void	find_ways(t_info *info, t_way *ways)
 {
-	int 	fd;
+	int 	max_ways;
 
-	ft_putstr("ERROR\n");
-	/*fd = open("log.txt", O_CREAT | O_WRONLY, S_IRWXU | S_IRWXG | S_IRWXO);
-	if (fd > 0)
-	{
-		ft_putstr_fd(str, fd);
-		ft_putchar_fd('\n', fd);
-		close(fd);
-	}*/
-	exit(0);
+
 }

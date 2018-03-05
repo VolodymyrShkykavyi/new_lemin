@@ -12,7 +12,7 @@
 
 #ifndef LEMIN_H
 # define LEMIN_H
-# define MALL_CHECK(x) if (!(x)) return (1);
+# define MALL_CHECK(x) if (!(x)) return (1)
 
 # include <stdlib.h>
 # include <fcntl.h>
