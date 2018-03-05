@@ -50,19 +50,22 @@ int 		parse_command(char **line, t_info *info)
 		if (parse_room(*line, info))
 			return (1);
 	}
+	else
+		return (0);
 	if (ft_strcmp("##start", *line) == 0)
 	{
 		if (info->start)
 			return (1);
 		info->start = info->rooms;
+		info->start->weight = 1;
 	}
 	else if (ft_strcmp("##end", *line) == 0)
 	{
 		if (info->end)
 			return (1);
 		info->end = info->rooms;
+		info->end->weight = 1;
 	}
-	return (0);
 }
 
 static int	parse_line(char **line, t_info *info, int *room_parsed)

@@ -33,4 +33,5 @@ int		main(int argc, char **argv)
 		fd = 0;
 	init_info(fd, &info);
 	lines = read_file(&info);
+	valid_and_set_weight(&info);
 }

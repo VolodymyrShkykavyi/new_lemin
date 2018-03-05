@@ -45,6 +45,7 @@ int 		parse_room(char *line, t_info *info)
 	room->y = ft_atoi(arr[2]);
 	room->next = info->rooms;
 	room->edges = NULL;
+	room->weight = 0;
 	if (check_room_info(room, info))
 		return (3);
 	info->rooms = room;
