@@ -6,7 +6,7 @@ SRC_DIR = src
 O_FILES = $(addprefix $(OBJ_DIR)/, $(C_FILES:$(SRC_DIR)/%.c=%.o))
 C_FILES = $(addprefix $(SRC_DIR)/, main.c read_file.c print_error.c \
 			parse_room.c  parse_edge.c support_func.c valid_and_set_weight.c \
-			tmp_debug.c)
+			tmp_debug.c find_ways.c)
 INCLUDES = -I libft/includes -I includes/
 
 all: $(NAME)
@@ -18,9 +18,9 @@ $(OBJ_DIR):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(FLAGS) -o $@ -c $< $(INCLUDES)
 clean:
-	#$(MAKE) clean -C libft
+	$(MAKE) clean -C libft
 	rm -rf $(OBJ_DIR)
 fclean: clean
-	#$(MAKE) fclean -C libft
+	$(MAKE) fclean -C libft
 	rm -f $(NAME)
 re: fclean all

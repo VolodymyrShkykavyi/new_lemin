@@ -14,7 +14,8 @@ add_executable(lem_in src/main.c
         src/read_file.c
         src/support_func.c
         src/tmp_debug.c
-        src/valid_and_set_weight.c)
+        src/valid_and_set_weight.c
+        src/find_ways.c)
 
 add_library(libft STATIC IMPORTED) # Создание статической библиотеки
 set_property(TARGET libft PROPERTY

@@ -47,11 +47,18 @@ typedef struct		s_info
 	int				fd;
 	uintmax_t		ant_num;
 	t_room			*rooms;
+	t_way			*ways;
 	t_room			*start;
 	t_room			*end;
 }					t_info;
 
+
+/*
+** debug
+*/
+
 void				print_rooms(t_info *info);
+void				print_ways(t_way *ways);
 
 /*
 ** returns the number of read lines
@@ -62,6 +69,8 @@ int					parse_room(char *line, t_info *info);
 t_room				*find_room(char *name, t_info *info);
 void				valid_and_set_weight(t_info *info);
 int					parse_edge(char *line, t_info *info);
+void				find_ways(t_info *info);
+
 void				print_error(char *text);
 int					is_command(char *str);
 int					is_room(char *str);

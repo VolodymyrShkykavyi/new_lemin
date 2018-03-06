@@ -91,14 +91,14 @@ uintmax_t	read_file(t_info *info)
 		if (ret < 0)
 			print_error("can't read file");
 		if (parse_line(&line, info, &room_parsed))
-		{
-			ft_strdel(&line);
 			break ;
-		}
-		num_lines++;
+	//	num_lines++;
+		ft_putstr(line);
+		ft_putchar('\n');
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
+	ft_putchar('\n');
 	close(info->fd);
 	return (num_lines);
 }

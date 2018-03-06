@@ -39,3 +39,24 @@ void 	print_rooms(t_info *info)
 	}
 
 }
+
+void	print_ways(t_way *ways)
+{
+	t_way	*way;
+	t_edge	*edge;
+
+	way = ways;
+	while (way)
+	{
+		edge = way->edges;
+		while (edge)
+		{
+			printf("{%s}", edge->room->name);
+			edge = edge->next;
+			if (edge)
+				printf(" -> ");
+		}
+		printf("\n");
+		way = way->next;
+	}
+}

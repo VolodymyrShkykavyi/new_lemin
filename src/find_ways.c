@@ -26,49 +26,118 @@ static unsigned int	get_edges_num(t_room *room)
 	}
 	return (num);
 }
-
-t_way				*create_way()
+/*
+void				copy_way(t_way **head, t_way *way)
 {
+	t_way	*tmp;
+	t_way	*new;
 
+	tmp = *head;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	MALL_CHECK(new = (t_way *)malloc(sizeof(t_way)));
+	//tmp->next
+}
+*/
+void				add_way_edge(t_way *way, t_room *room)
+{
+	t_edge	*last;
+
+	if (!way->edges)
+	{
+		MALL_CHECK(way->edges = (t_edge *) malloc(sizeof(t_edge)));
+		last = way->edges;
+	}
+	else
+	{
+		last = way->edges;
+		while (last && last->next)
+			last = last->next;
+		MALL_CHECK(last->next = (t_edge *) malloc(sizeof(t_edge)));
+		last = last->next;
+	}
+	last->next = NULL;
+	last->room = room;
 }
 
-int					get_shortest_ways(t_info *info, t_way *ways, int max)
+void				init_ways(t_info *info)
+{
+	t_edge	*edge;
+	t_way	*tmp;
+
+	edge = info->end->edges;
+	while (edge)
+	{
+		MALL_CHECK(tmp = (t_way *)malloc(sizeof(t_way)));
+		tmp->len = 1;
+		tmp->next = info->ways;
+		tmp->edges = NULL;
+		add_way_edge(tmp, info->end);
+		add_way_edge(tmp, edge->room);
+		info->ways = tmp;
+		edge = edge->next;
+	}
+}
+
+void				copy_way_exept_ledge(t_info *info, t_way *way)
+{
+	t_way	*new;
+	t_edge	*edge;
+
+	MALL_CHECK(new = (t_way *)malloc(sizeof(t_way)));
+	new->edges = NULL;
+	new->next = way->next;
+	way->next = new;
+	edge = way->edges;
+	while (edge && edge->next)
+	{
+		add_way_edge(new, edge->room);
+		edge = edge->next;
+	}
+}
+
+int					get_shortest_ways(t_info *info, int max)
 {
 	t_way	*tmp_w;
 	t_edge	*edge;
-	int 	min_w;
-	int 	num_min_w;
+	t_edge	*tmp_e;
+	int 	step;
+	int		added;
 
 	//room = info->end->edges;
-	edge = info->end->edges;
-	min_w = 0;
-	while (edge)
+	init_ways(info);
+	step = info->end->weight;
+	while (--step > 0)
 	{
-		if (edge->room->weight != -1 && (!min_w || min_w > edge->room->weight))
+		tmp_w = info->ways;
+		while (tmp_w)
 		{
-			num_min_w = 1;
-			min_w = edge->room->weight;
+			edge = tmp_w->edges;
+			while (edge && edge->next)
+				edge = edge->next;
+			tmp_e = edge->room->edges;
+			added = 0;
+			while (tmp_e)
+			{
+				if (!added && tmp_e->room->weight == step)
+				{
+					add_way_edge(tmp_w, tmp_e->room);
+					added = 1;
+				}
+				else if (added && tmp_e->room->weight == step)
+				{
+					//copy_way_exept_ledge(info, tmp_w);
+				//	add_way_edge(tmp_w->next, tmp_e->room);
+				}
+				tmp_e = tmp_e->next;
+			}
+			tmp_w = tmp_w->next;
 		}
-		else if (edge->room->weight == min_w)
-			num_min_w++;
-		edge = edge->next;
 	}
-	ways = NULL;
-	while (num_min_w--)
-	{
-		MALL_CHECK(tmp_w = (t_way *)malloc(sizeof(t_way)));
-		tmp_w->next = ways;
-		tmp_w->edges = NULL;
-		tmp_w->edges = 0;
-		ways = tmp_w;
-	}
-	while (min_w--)
-	{
-
-	}
+	return (0);
 }
 
-void				find_ways(t_info *info, t_way *ways)
+void				find_ways(t_info *info)
 {
 	unsigned int	max_ways;
 	t_way			*shortest;
@@ -77,5 +146,5 @@ void				find_ways(t_info *info, t_way *ways)
 		max_ways = get_edges_num(info->start);
 	else
 		max_ways = get_edges_num(info->end);
-	get_shortest_ways(info, ways, max_ways);
+	get_shortest_ways(info, max_ways);
 }

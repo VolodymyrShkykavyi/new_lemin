@@ -19,13 +19,13 @@ static void	init_info(int fd, t_info *info)
 	info->start = NULL;
 	info->end = NULL;
 	info->rooms = NULL;
+	info->ways = NULL;
 }
 
 int		main(int argc, char **argv)
 {
 	int			fd;
 	t_info		info;
-	t_way		*ways;
 	uintmax_t	lines;
 
 	if (argc == 2)
@@ -34,7 +34,10 @@ int		main(int argc, char **argv)
 		fd = 0;
 	init_info(fd, &info);
 	lines = read_file(&info);
+	ft_printf("parsed\n");
 	valid_and_set_weight(&info);
+	ft_printf("weight\n");
 	print_rooms(&info);
-	//find_ways(&info, ways);
+	//find_ways(&info);
+	//print_ways(info.ways);
 }
