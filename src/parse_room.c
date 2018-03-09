@@ -36,7 +36,6 @@ int			parse_room(char *line, t_info *info)
 	MALL_CHECK(arr = ft_strsplit(line, ' '));
 	if (!arr[0] || !arr[1] || !arr[2] || arr[3])
 	{
-		ft_printarr(arr);
 		ft_free_2arr(arr);
 		return (2);
 	}
@@ -48,10 +47,12 @@ int			parse_room(char *line, t_info *info)
 	room->edges = NULL;
 	room->weight = 0;
 	room->visited = 0;
+	room->num_edges = 0;
 	ft_free_2arr(arr);
 	if (check_room_info(room, info))
 		return (3);
 	info->rooms = room;
+	info->num_rooms++;
 	return (0);
 }
 

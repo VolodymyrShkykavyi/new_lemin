@@ -27,6 +27,7 @@ static int	save_edge(t_room *dest, t_room *link)
 	edge->next = dest->edges;
 	edge->room = link;
 	dest->edges = edge;
+	dest->num_edges++;
 	return (0);
 }
 

@@ -16,6 +16,7 @@ static void	init_info(int fd, t_info *info)
 {
 	info->fd = fd;
 	info->ant_num = 0;
+	info->num_rooms = 0;
 	info->start = NULL;
 	info->end = NULL;
 	info->rooms = NULL;
@@ -26,14 +27,13 @@ int		main(int argc, char **argv)
 {
 	int			fd;
 	t_info		info;
-	uintmax_t	lines;
 
 	if (argc == 2)
 		fd = open(argv[1], O_RDONLY);
 	else
 		fd = 0;
 	init_info(fd, &info);
-	lines = read_file(&info);
+	read_file(&info);
 	ft_printf("parsed\n");
 	valid_and_set_weight(&info);
 	ft_printf("weight\n");

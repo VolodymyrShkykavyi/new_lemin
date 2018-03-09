@@ -24,6 +24,7 @@ typedef struct		s_room
 	int				y;
 	int				weight;
 	int				visited;
+	unsigned int	num_edges;
 	char			*name;
 	struct s_edge	*edges;
 	struct s_room	*next;
@@ -46,6 +47,7 @@ typedef struct		s_info
 {
 	int				fd;
 	uintmax_t		ant_num;
+	uintmax_t		num_rooms;
 	t_room			*rooms;
 	t_way			*ways;
 	t_room			*start;
@@ -60,11 +62,7 @@ typedef struct		s_info
 void				print_rooms(t_info *info);
 void				print_ways(t_way *ways);
 
-/*
-** returns the number of read lines
-*/
-
-uintmax_t			read_file(t_info *info);
+void				read_file(t_info *info);
 int					parse_room(char *line, t_info *info);
 t_room				*find_room(char *name, t_info *info);
 void				valid_and_set_weight(t_info *info);
