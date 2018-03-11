@@ -34,10 +34,10 @@ int		main(int argc, char **argv)
 		fd = 0;
 	init_info(fd, &info);
 	read_file(&info);
-	ft_printf("parsed\n");
+	//ft_printf("parsed\n");
 	valid_and_set_weight(&info);
-	ft_printf("weight\n");
+	//ft_printf("weight\n");
 	print_rooms(&info);
-	//find_ways(&info);
+	find_ways(&info);
 	//print_ways(info.ways);
 }

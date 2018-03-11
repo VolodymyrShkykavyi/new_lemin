@@ -13,6 +13,8 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
+# define DEBUG 1
+
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft.h"
@@ -23,7 +25,7 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int				weight;
-	int				visited;
+	int				visited; //maybe delete it
 	unsigned int	num_edges;
 	char			*name;
 	struct s_edge	*edges;

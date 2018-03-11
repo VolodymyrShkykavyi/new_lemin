@@ -60,7 +60,7 @@ void	print_ways(t_way *ways)
 			if (edge)
 				printf(" -> ");
 		}
-		printf("\n");
+		printf(" | len: %jd\n", way->len);
 		way = way->next;
 	}
 }

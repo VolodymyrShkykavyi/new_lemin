@@ -136,6 +136,7 @@ int					get_shortest_ways(t_info *info, int max)
 	}
 	return (0);
 }
+/*
 
 void				find_ways(t_info *info)
 {
@@ -148,3 +149,135 @@ void				find_ways(t_info *info)
 		max_ways = get_edges_num(info->end);
 	get_shortest_ways(info, max_ways);
 }
+*/
+/*
+ * new
+ */
+
+t_edge				*get_minweight_edge(t_edge *end_edges)
+{
+	t_edge	*edge;
+	t_edge	*best_edge;
+	t_edge	*new_edge;
+
+	edge = end_edges;
+	best_edge = NULL;
+	while (edge)
+	{
+		if (!edge->room->visited)
+		{
+			if (!best_edge || edge->room->weight < best_edge->room->weight)
+				best_edge = edge;
+			else if (edge->room->weight == best_edge->room->weight &&
+					edge->room->num_edges == 2)
+				best_edge = edge;
+		}
+		edge = edge->next;
+	}
+	if (!best_edge)
+		return (NULL);
+	MALL_CHECK(new_edge = (t_edge *)malloc(sizeof(t_edge)));
+	new_edge->room = best_edge->room;
+	new_edge->next = NULL;
+	return (new_edge);
+}
+
+t_edge				*get_last_edge(t_edge *edges)
+{
+	t_edge	*edge;
+	edge = edges;
+	while (edge && edge->next)
+		edge = edge->next;
+	return (edge);
+}
+
+void				delete_way(t_way *way)
+{
+	t_edge	*edge;
+	t_edge	*prev;
+
+	way->len = 0;
+
+	edge = way->edges->next;
+	while (edge && edge->next)
+	{
+		prev = edge;
+		edge = edge->next;
+		prev->room->visited = 0;
+		free(prev);
+	}
+	if (edge)
+		free(edge);
+	way->edges->next = NULL;
+}
+
+void				get_new_way(t_way *way, t_info *info)
+{
+	t_edge	*last_e;
+	t_edge	*min_edge;
+
+	//ft_putstr_fd("buid new way\n", 2);
+	last_e = get_last_edge(way->edges);
+	last_e->room->visited = 1;
+	while (1)
+	{
+		min_edge = get_minweight_edge(last_e->room->edges);
+		//ft_putstr_fd("\tnew way edge\n", 2);
+		if (!min_edge)
+		{
+			delete_way(way);
+			return ;
+		}
+		last_e->next = min_edge;
+		last_e = min_edge;
+		way->len++;
+		if (min_edge->room == info->start)
+			return ;
+		min_edge->room->visited = 1;
+	}
+}
+
+void				find_ways(t_info *info)
+{
+	unsigned int	num_way;
+	unsigned int	max_ways;
+	unsigned int	find_ways;
+	t_way			way_arr[info->end->num_edges];
+
+	max_ways = (info->end->num_edges > info->start->num_edges) ?
+			   info->start->num_edges : info->end->num_edges;
+	find_ways = 0;
+	num_way = 0;
+	info->end->visited = 1;
+	ft_putstr_fd("start finding\n", 2);
+	while (find_ways < max_ways && num_way < max_ways)
+	{
+		way_arr[num_way].edges = get_minweight_edge(info->end->edges);
+		way_arr[num_way].len = 0;
+		if (way_arr[num_way].edges)
+			get_new_way(&(way_arr[num_way]), info);
+		if (way_arr[num_way].len)
+		{
+			find_ways++;
+			way_arr[num_way].next = NULL;
+			info->ways = &(way_arr[num_way]);
+		}
+		num_way++;
+	}
+//	way_arr[0].next = NULL;
+
+	find_ways = 0;
+	while (find_ways < num_way)
+	{
+		if (!way_arr[find_ways++].len)
+			get_new_way(&(way_arr[num_way - 1]), info);
+	}
+
+
+
+	while (--num_way)
+		if (way_arr[num_way].len)
+			print_ways(&way_arr[num_way]);
+	//print_ways(&way_arr[num_way]);
+}
+
