@@ -25,7 +25,8 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int				weight;
-	int				visited; //maybe delete it
+	int				visited;
+	uintmax_t		ant;
 	unsigned int	num_edges;
 	char			*name;
 	struct s_edge	*edges;
@@ -70,6 +71,7 @@ t_room				*find_room(char *name, t_info *info);
 void				valid_and_set_weight(t_info *info);
 int					parse_edge(char *line, t_info *info);
 void				find_ways(t_info *info);
+void 		save_ways(t_way *arr, t_info *info);
 
 void				print_error(char *text);
 int					is_command(char *str);

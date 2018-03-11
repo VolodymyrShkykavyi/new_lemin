@@ -14,7 +14,6 @@
 
 void	print_error(char *str)
 {
-	int 	fd;
 
 	ft_putstr("ERROR\n");
 	/*fd = open("log.txt", O_CREAT | O_WRONLY, S_IRWXU | S_IRWXG | S_IRWXO);
@@ -24,5 +23,7 @@ void	print_error(char *str)
 		ft_putchar_fd('\n', fd);
 		close(fd);
 	}*/
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
 	exit(0);
 }

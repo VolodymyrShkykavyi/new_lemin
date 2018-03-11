@@ -27,7 +27,7 @@ void		get_ant_num(t_info *info)
 	info->ant_num = (uintmax_t)ft_atoi(line);
 	if (!(info->ant_num))
 		print_error("wrong ant num");
-	ft_putstr(line);
+	ft_putendl(line);
 	ft_strdel(&line);
 }
 
@@ -37,7 +37,7 @@ int			parse_command(char **line, t_info *info)
 		return (2);
 	else if (ft_strcmp("##start", *line) == 0)
 	{
-		ft_putstr(*line);
+		ft_putendl(*line);
 		ft_strdel(line);
 		if (get_next_line(info->fd, line) <= 0)
 			print_error("can't read file");
@@ -49,7 +49,7 @@ int			parse_command(char **line, t_info *info)
 	}
 	else if (ft_strcmp("##end", *line) == 0)
 	{
-		ft_putstr(*line);
+		ft_putendl(*line);
 		ft_strdel(line);
 		if (get_next_line(info->fd, line) <= 0)
 			print_error("can't read file");
@@ -93,8 +93,7 @@ void	read_file(t_info *info)
 			print_error("can't read file");
 		if (parse_line(&line, info, &room_parsed))
 			break ;
-		ft_putstr(line);
-		ft_putchar('\n');
+		ft_putendl(line);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
