@@ -51,16 +51,17 @@ int 	sent_new_ants(t_info *info, uintmax_t *ant)
 		return (0);
 	way = info->ways;
 	min_len = way->len;
-	min_len--;
 	while (way)
 	{
-		(*ant)++;
-		if (*ant != 1)
+		if (*ant != 0)
 			ft_putchar(' ');
 		edge = get_last_edge(way->edges);
-		ft_printf("L%jd-%s", *ant, edge->room->name);
+		if (info->ant_num - *ant >= way->len - min_len)
+			ft_printf("L%jd-%s", ++(*ant), edge->room->name);
+		else
+			return (1);
 		edge->room->ant = *ant;
-		if (*ant >= info->ant_num)
+		if (*ant == info->ant_num)
 			return (1);
 		way = way->next;
 	}
