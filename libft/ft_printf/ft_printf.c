@@ -29,8 +29,9 @@ int		ft_printf(const char *format, ...)
 			break ;
 		if (*str == '{')
 			ft_printf_getcolor(&str, &len);
+		if (write(1, str, 1) == -1)
+			return (len);
 		len++;
-		write(1, str, 1);
 		str++;
 	}
 	return (len);

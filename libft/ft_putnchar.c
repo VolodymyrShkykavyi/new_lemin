@@ -15,5 +15,6 @@
 void	ft_putnchar(char c, size_t num)
 {
 	while (num-- > 0)
-		write(1, &c, 1);
+		if (write(1, &c, 1) == -1)
+			return ;
 }

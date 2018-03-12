@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -O3
 OBJECT_DIR = objects
 INCLUDES = includes
 OBJ = $(addprefix $(OBJECT_DIR)/, $(SRC:.c=.o))

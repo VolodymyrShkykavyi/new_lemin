@@ -16,5 +16,6 @@
 void	ft_putnstr(char *str, size_t len)
 {
 	while (*str && len--)
-		write(1, str++, 1);
+		if (write(1, str++, 1) == -1)
+			return ;
 }

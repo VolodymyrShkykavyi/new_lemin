@@ -28,13 +28,13 @@ void	format_c_putchar(t_specinfo *info, int *len, unsigned char c)
 	width = (info->width > 1) ? info->width - 1 : 0;
 	if (info->zero_minus == '-')
 	{
-		write(1, &c, 1);
+		ft_putchar(c);
 		ft_putnchar(' ', width);
 	}
 	else
 	{
 		ft_putnchar((info->zero_minus == '0') ? '0' : ' ', width);
-		write(1, &c, 1);
+		ft_putchar(c);
 	}
 	*len += width + 1;
 }
