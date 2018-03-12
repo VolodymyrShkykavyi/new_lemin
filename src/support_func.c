@@ -69,9 +69,11 @@ int		is_command(char *str)
 	return (0);
 }
 
-int		is_command_support(char *str)
+t_edge				*get_last_edge(t_edge *edges)
 {
-	if (ft_strcmp(str, "##start") == 0 || ft_strcmp(str, "##end") == 0)
-		return (1);
-	return (0);
+	t_edge	*edge;
+	edge = edges;
+	while (edge && edge->next)
+		edge = edge->next;
+	return (edge);
 }

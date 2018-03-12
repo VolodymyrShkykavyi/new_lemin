@@ -41,4 +41,5 @@ int		main(int argc, char **argv)
 		print_rooms(&info);
 		print_ways(info.ways);
 	}
+	print_result(&info);
 }

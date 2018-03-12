@@ -27,7 +27,7 @@ t_way		*get_longest_way(t_way	*arr, intmax_t size)
 	if (!max_way)
 		return (NULL);
 	MALL_CHECK(new_way = (t_way *)malloc(sizeof(t_way)));
-	new_way->len = max_way->len;
+	new_way->len = max_way->len + 1;
 	new_way->next = NULL;
 	new_way->edges = max_way->edges;
 	max_way->len = 0;

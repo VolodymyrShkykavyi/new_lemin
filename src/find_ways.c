@@ -41,14 +41,6 @@ t_edge				*get_minweight_edge(t_edge *end_edges)
 	return (new_edge);
 }
 
-t_edge				*get_last_edge(t_edge *edges)
-{
-	t_edge	*edge;
-	edge = edges;
-	while (edge && edge->next)
-		edge = edge->next;
-	return (edge);
-}
 
 void				delete_way(t_way *way)
 {
@@ -85,14 +77,14 @@ void				get_new_way(t_way *way, t_info *info)
 			delete_way(way);
 			return ;
 		}
-		last_e->next = min_edge;
-		last_e = min_edge;
 		way->len++;
 		if (min_edge->room == info->start)
 		{
 			last_e->next = NULL;
 			return ;
 		}
+		last_e->next = min_edge;
+		last_e = min_edge;
 		min_edge->room->visited = 1;
 	}
 }

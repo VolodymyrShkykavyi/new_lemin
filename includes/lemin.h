@@ -13,7 +13,7 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
-# define DEBUG 1
+# define DEBUG 0
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -71,12 +71,14 @@ t_room				*find_room(char *name, t_info *info);
 void				valid_and_set_weight(t_info *info);
 int					parse_edge(char *line, t_info *info);
 void				find_ways(t_info *info);
-void 		save_ways(t_way *arr, t_info *info);
-
+void 				save_ways(t_way *arr, t_info *info);
+void				print_result(t_info *info);
 void				print_error(char *text);
+
+t_edge				*get_last_edge(t_edge *edges);
 int					is_command(char *str);
+//int					is_command_support(char *str);
 int					is_room(char *str);
 int					is_edge(char *str);
 int					is_comment(char *str);
-int					is_command_support(char *str);
 #endif
