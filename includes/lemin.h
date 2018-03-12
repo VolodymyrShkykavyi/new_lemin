@@ -13,7 +13,7 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
-# define DEBUG 0
+# define DEBUG 1
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -77,7 +77,6 @@ void				print_error(char *text);
 
 t_edge				*get_last_edge(t_edge *edges);
 int					is_command(char *str);
-//int					is_command_support(char *str);
 int					is_room(char *str);
 int					is_edge(char *str);
 int					is_comment(char *str);

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vshkykav <vshkykav@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 22:26:00 by vshkykav          #+#    #+#             */
-/*   Updated: 2018/03/04 22:26:00 by vshkykav         ###   ########.fr       */
+/*   Created: 2018/03/12 20:23:00 by vshkykav          #+#    #+#             */
+/*   Updated: 2018/03/12 20:23:00 by vshkykav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include  <QApplication>
+#include <QWidget>
 
-void	print_error(char *str)
+int		main(int argc, char **argv)
 {
+	QApplication app(argc, argv);
+	QWidget wgt;
+	wgt.setWindowTitle(QObject::tr("Hello world"));
 
-	ft_putstr("ERROR\n");
-	/*fd = open("log.txt", O_CREAT | O_WRONLY, S_IRWXU | S_IRWXG | S_IRWXO);
-	if (fd > 0)
-	{
-		ft_putstr_fd(str, fd);
-		ft_putchar_fd('\n', fd);
-		close(fd);
-	}*/
-	ft_putendl_fd(str, 2);
-	exit(0);
+	wgt.show();
+	return (app.exec());
 }

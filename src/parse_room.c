@@ -20,9 +20,15 @@ static int	check_room_info(t_room *room, t_info *info)
 	while (tmp)
 	{
 		if (ft_strcmp(room->name, tmp->name) == 0)
+		{
+			free(room);
 			return (1);
+		}
 		if (tmp->x == room->x && tmp->y == room->y)
+		{
+			free(room);
 			return (2);
+		}
 		tmp = tmp->next;
 	}
 	return (0);
