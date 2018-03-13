@@ -13,7 +13,7 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
-# define DEBUG 1
+# define DEBUG 0
 
 # include <stdlib.h>
 # include <fcntl.h>

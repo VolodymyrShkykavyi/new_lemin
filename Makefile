@@ -1,6 +1,6 @@
 NAME = lem-in
 CC = gcc
-FLAGS = -Wall -Werror -Wextra  -O3
+FLAGS = -Wall -Werror -Wextra -O3
 OBJ_DIR = objects
 SRC_DIR = src
 O_FILES = $(addprefix $(OBJ_DIR)/, $(C_FILES:$(SRC_DIR)/%.c=%.o))
@@ -24,3 +24,6 @@ fclean: clean
 	$(MAKE) fclean -C libft
 	rm -f $(NAME)
 re: fclean all
+change:
+	rm -rf $(OBJ_DIR)
+	make

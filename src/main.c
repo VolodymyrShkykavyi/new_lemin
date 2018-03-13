@@ -30,8 +30,13 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 		fd = open(argv[1], O_RDONLY);
-	else
+	else if (argc == 1)
 		fd = 0;
+	else
+	{
+		ft_printf("Usage:\n\t%s < <file_name>\n\t%s <file_name>\n", argv[0], argv[0]);
+		return (0);
+	}
 	init_info(fd, &info);
 	read_file(&info);
 	valid_and_set_weight(&info);
@@ -39,7 +44,10 @@ int		main(int argc, char **argv)
 	if (DEBUG)
 	{
 		print_rooms(&info);
+		ft_putchar_fd('\n', 2);
 		print_ways(info.ways);
+		ft_putchar_fd('\n', 2);
 	}
 	print_result(&info);
+	return (0);
 }

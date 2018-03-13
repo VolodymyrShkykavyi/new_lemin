@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   lem_in_vizualizer.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vshkykav <vshkykav@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 20:23:00 by vshkykav          #+#    #+#             */
-/*   Updated: 2018/03/12 20:23:00 by vshkykav         ###   ########.fr       */
+/*   Created: 2018/03/13 12:47:00 by vshkykav          #+#    #+#             */
+/*   Updated: 2018/03/13 12:47:00 by vshkykav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  <QApplication>
-#include <QWidget>
+#ifndef LEM_IN_VIZUALIZER_H
+# define LEM_IN_VIZUALIZER_H
 
-int		main(int argc, char **argv)
+# include "ft_mlx_image.h"
+# include "../../libft/includes/libft.h"
+# include <stdlib.h>
+
+typedef struct		s_room
 {
-	QApplication app(argc, argv);
-	QWidget wgt;
-	wgt.setWindowTitle(QObject::tr("Hello world"));
+	intmax_t		x;
+	intmax_t		y;
+	char			ant_in;
 
-	wgt.show();
-	return (app.exec());
-}
+}					t_room;
+
+void		run_hooks(t_mlx *mlx_info);
+
+#endif
