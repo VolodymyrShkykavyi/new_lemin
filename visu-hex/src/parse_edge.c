@@ -19,11 +19,6 @@ int			parse_edge(char *line, t_info *info)
 	char	**arr;
 
 	MALL_CHECK(arr = ft_strsplit(line, '-'));
-	if (!(arr[0]) || !(arr[1]) || arr[2])
-	{
-		ft_free_2arr(arr);
-		return (1);
-	}
 	room1 = find_room(arr[0], info);
 	room2 = find_room(arr[1], info);
 	ft_free_2arr(arr);

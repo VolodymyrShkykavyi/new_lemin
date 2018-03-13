@@ -46,41 +46,35 @@ int			parse_command(char **line, t_info *info)
 	return (0);
 }
 
-static int	parse_line(char **line, t_info *info, int *room_parsed)
+static int	parse_line(char **line, t_info *info)
 {
 	if (is_comment(*line))
 		return (0);
 	else if (is_command(*line))
 		return (parse_command(line, info));
-	else if (!(*room_parsed) && is_room(*line))
+	else if (is_room(*line))
 		return (parse_room(*line, info));
 	else if (is_edge(*line))
-	{
-		*room_parsed = 1;
 		return (parse_edge(*line, info));
-	}
 	else
 		return (1);
 }
 
-void	read_file(t_info *info)
+void	read_data(t_info *info)
 {
 	char		*line;
 	int			ret;
-	int			room_parsed;
 
-	room_parsed = 0;
 	get_ant_num(info);
 	while ((ret = get_next_line(info->fd, &line)))
 	{
 		if (ret < 0)
-			print_error("can't read file");
+			print_error("can't read data");
+		if (strcmp(line, "ERROR") == 0)
+			exit(0);
 		if (parse_line(&line, info, &room_parsed))
 			break ;
-		ft_putendl(line);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	ft_putchar('\n');
-	close(info->fd);
 }

@@ -13,9 +13,21 @@
 #include <mlx.h>
 #include "lem_in_vizualizer.h"
 
+static void	init_info(t_info *info)
+{
+	info->fd = 0;
+	info->ant_num = 0;
+	info->num_rooms = 0;
+	info->start = NULL;
+	info->end = NULL;
+	info->rooms = NULL;
+	info->ways = NULL;
+}
+
 int		main(int argc, char **argv)
 {
 	t_mlx	*mlx_info;
+	t_info	*info;
 	void	*image;
 
 	if (!(mlx_info = init_mlx_and_img(1024, 768, "lem_in visualization")))
@@ -23,7 +35,9 @@ int		main(int argc, char **argv)
 		ft_putstr("can't crate window\n");
 		return (0);
 	}
+	init_info(&info);
 	run_hooks(mlx_info);
+
 	int h = 300;
 	int w = 1;
 
