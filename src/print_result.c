@@ -41,7 +41,7 @@ int 	move_ants(t_info *info)
 	return (ret);
 }
 
-int 	sent_new_ants(t_info *info, uintmax_t *ant)
+int 	sent_new_ants(t_info *info, uintmax_t *ant, int was_output)
 {
 	t_way		*way;
 	t_edge		*edge;
@@ -54,15 +54,14 @@ int 	sent_new_ants(t_info *info, uintmax_t *ant)
 	min_len = way->len;
 	while (way)
 	{
-		if (*ant != 0)
+		if (was_output)
 			ft_putchar(' ');
 		edge = get_last_edge(way->edges);
 		if (info->ant_num - *ant >= way->len - min_len)
-		{
 			ft_printf("L%jd-%s", ++(*ant), edge->room->name);
-		}
 		else
 			return (1);
+		was_output = 1;
 		edge->room->ant = *ant;
 		if (*ant == info->ant_num)
 			return (1);
@@ -81,7 +80,7 @@ void	print_result(t_info *info)
 	{
 		ret = 0;
 		ret += move_ants(info);
-		ret += sent_new_ants(info, &ant);
+		ret += sent_new_ants(info, &ant, ret);
 		if (!ret)
 			return ;
 		ft_putchar('\n');

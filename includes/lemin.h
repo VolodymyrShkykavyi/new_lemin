@@ -74,7 +74,7 @@ void				find_ways(t_info *info);
 void 				save_ways(t_way *arr, t_info *info);
 void				print_result(t_info *info);
 void				print_error(char *text);
-
+void				delete_way(t_way *way);
 t_edge				*get_last_edge(t_edge *edges);
 int					is_command(char *str);
 int					is_room(char *str);

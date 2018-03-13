@@ -46,6 +46,13 @@ void 		save_ways(t_way *way_arr, t_info *info)
 		longest = get_longest_way(way_arr, info->end->num_edges);
 		if (!longest)
 			return ;
+		if (info->ways && longest->len == 2 && info->ways->len == 2)
+		{
+			delete_way(longest);
+			free(longest->edges);
+			free(longest);
+			continue ;
+		}
 		longest->next = info->ways;
 		info->ways = longest;
 		edge = info->ways->edges;
