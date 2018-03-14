@@ -12,7 +12,7 @@
 
 #include <mlx.h>
 #include "lem_in_vizualizer.h"
-
+/*
 static void	init_info(t_info *info)
 {
 	info->fd = 0;
@@ -23,11 +23,11 @@ static void	init_info(t_info *info)
 	info->rooms = NULL;
 	info->ways = NULL;
 }
-
+*/
 int		main(int argc, char **argv)
 {
 	t_mlx	*mlx_info;
-	t_info	*info;
+	//t_info	*info;
 	void	*image;
 
 	if (!(mlx_info = init_mlx_and_img(1024, 768, "lem_in visualization")))
@@ -35,7 +35,7 @@ int		main(int argc, char **argv)
 		ft_putstr("can't crate window\n");
 		return (0);
 	}
-	init_info(&info);
+	//init_info(&info);
 	run_hooks(mlx_info);
 
 	int h = 300;
@@ -48,19 +48,19 @@ int		main(int argc, char **argv)
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, mlx_info->img.img_ptr, 0, 0);
 
 
-	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/room1_100px.xpm", &h, &w);
+	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/xpm/room1_100px.xpm", &h, &w);
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, image, 300, 300);
-	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/room2_100px.xpm", &h, &w);
+	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/xpm/room2_100px.xpm", &h, &w);
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, image, 500, 500);
 
 
 
 
-	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/room3_100px.xpm", &h, &w);
+	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/xpm/room3_100px.xpm", &h, &w);
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, image, 200, 400);
-	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/room4_100px.xpm", &h, &w);
+	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/xpm/room4_100px.xpm", &h, &w);
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, image, 100, 100);
-	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/room5_100px.xpm", &h, &w);
+	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/xpm/room5_100px.xpm", &h, &w);
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, image, 700, 500);
 
 	mlx_loop(mlx_info->mlx_ptr);
