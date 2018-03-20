@@ -12,6 +12,27 @@
 
 #include "lem_in_vizualizer.h"
 
+/*
+** rand() % (max_number + 1 - minimum_number) + minimum_number
+*/
+
+static void	get_room_img(t_room	*room)
+{
+	int 	res;
+
+	res = rand() % (6 + 1 - 2) + 2;
+	if (res == 2)
+		ft_strcpy(room->src, "img/xpm/island2_100x100.xpm");
+	else if (res == 3)
+		ft_strcpy(room->src, "img/xpm/island3_100x100.xpm");
+	else if (res == 4)
+		ft_strcpy(room->src, "img/xpm/island4_100x100.xpm");
+	else if (res == 5)
+		ft_strcpy(room->src, "img/xpm/island5_100x100.xpm");
+	else
+		ft_strcpy(room->src, "img/xpm/island6_100x100.xpm");
+}
+
 int			parse_room(char *line, t_info *info)
 {
 	t_room	*room;
@@ -26,6 +47,7 @@ int			parse_room(char *line, t_info *info)
 	ft_free_2arr(arr);
 	info->rooms = room;
 	info->num_rooms++;
+	get_room_img(room);
 	return (0);
 }
 

@@ -22,9 +22,20 @@ typedef struct		s_room
 	intmax_t		x;
 	intmax_t		y;
 	char			ant_in;
-
+	char			src[50];
+	char 			*name;
+	struct s_room	*next;
 }					t_room;
 
-void		run_hooks(t_mlx *mlx_info);
+typedef struct		s_info
+{
+	uintmax_t		ant_num;
+	int 			num_rooms;
+	t_room			*rooms;
+	t_room			*start;
+	t_room			*end;
+}					t_info;
 
+void		run_hooks(t_mlx *mlx_info);
+void	read_data(t_info *info);
 #endif
