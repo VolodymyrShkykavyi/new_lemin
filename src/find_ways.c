@@ -60,6 +60,7 @@ void				delete_way(t_way *way)
 		free(prev);
 	}
 	way->edges->next = NULL;
+
 }
 
 void				get_new_way(t_way *way, t_info *info)
@@ -81,6 +82,7 @@ void				get_new_way(t_way *way, t_info *info)
 		if (min_edge->room == info->start)
 		{
 			last_e->next = NULL;
+			free(min_edge);
 			return ;
 		}
 		last_e->next = min_edge;
@@ -103,7 +105,7 @@ void				find_ways(t_info *info)
 		way_arr[num_way].edges->room = info->end;
 		way_arr[num_way].edges->next = get_minweight_edge(info->end->edges);
 		way_arr[num_way].len = 0;
-		if (way_arr[num_way].edges)
+		if (way_arr[num_way].edges->next)
 			get_new_way(&(way_arr[num_way]), info);
 		num_way++;
 	}
@@ -113,6 +115,9 @@ void				find_ways(t_info *info)
 			get_new_way(&(way_arr[num_way]), info);
 	while (--num_way >= 0)
 		if (!way_arr[num_way].len)
+		{
 			free(way_arr[num_way].edges);
+
+		}
 	save_ways(&way_arr[0], info);
 }

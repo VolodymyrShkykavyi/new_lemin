@@ -62,7 +62,10 @@ void		set_weight(t_info *info)
 	while (1)
 	{
 		if (!(num_start_next = set_weight_list(&start_list, num_start_next)))
+		{
+			free(start_list);
 			break ;
+		}
 	}
 }
 
