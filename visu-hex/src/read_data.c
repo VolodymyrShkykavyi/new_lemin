@@ -31,6 +31,7 @@ int			parse_command(char **line, t_info *info)
 			print_error("can't read file");
 		parse_room(*line, info);
 		info->start = info->rooms;
+		ft_strcpy(info->start->src, "img/xpm/island1_100x100.xpm");
 	}
 	else if (ft_strcmp("##end", *line) == 0)
 	{
@@ -39,6 +40,7 @@ int			parse_command(char **line, t_info *info)
 			print_error("can't read file");
 		parse_room(*line, info);
 		info->end = info->rooms;
+		ft_strcpy(info->end->src, "img/xpm/island7_100x100.xpm");
 	}
 	return (0);
 }
@@ -52,7 +54,7 @@ static int	parse_line(char **line, t_info *info)
 	else if (is_room(*line))
 		return (parse_room(*line, info));
 	else if (is_edge(*line))
-		return (/*parse_edge(*line, info)*/0);
+		return (parse_edge(*line, info));
 	else
 		return (1);
 }

@@ -3,11 +3,11 @@ CC = gcc
 FLAGS =  -O2 #-Wall -Werror -Wextra
 O_FILES = $(addprefix $(OBJ_DIR)/, $(C_FILES:$(SRC_DIR)/%.c=%.o))
 C_FILES = $(addprefix $(SRC_DIR)/, main.c run_hooks.c read_data.c parse_room.c \
-			support_func.c print_error.c tmp_debug.c \
+			support_func.c print_error.c parse_edge.c tmp_debug.c \
 			$(addprefix graphics/, init_img_struct.c init_mlx_and_img.c put_pixel_to_img.c))
 OBJ_DIR = objects
 SRC_DIR = src
-INCLUDES =  -I includes/ -I ../libft/includes 
+INCLUDES =  -I includes/ -I ../libft/includes
 LIB_INCLUDES = -L./../libft -lft -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)

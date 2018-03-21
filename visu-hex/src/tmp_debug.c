@@ -28,9 +28,20 @@ void 	print_rooms(t_info *info)
 		else
 			dprintf(2, "%10c", ' ');
 
-		dprintf(2, "name: %-20s |x: %-3jd |y: %-3jd |\n", room->name, room->x, room->y);
+		dprintf(2, "name: %-20s |x: %-3jd |y: %-3jd | map: %s\n", room->name,
+		room->x, room->y, room->src + 8);
 		dprintf(2, "\033[0m");
 		room = room->next;
 	}
+}
 
+void print_edges(t_info *info)
+{
+	t_edge	*edge;
+
+	edge = info->edges;
+	while (edge) {
+		dprintf(2, "{[%s] - [%s]}\n", edge->room1->name, edge->room2->name);
+		edge = edge->next;
+	}
 }

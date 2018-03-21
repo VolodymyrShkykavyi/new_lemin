@@ -12,6 +12,26 @@
 
 #include "lem_in_vizualizer.h"
 
+static int	save_edge(t_info *info, t_room *r1, t_room *r2)
+{
+	t_edge	*tmp;
+
+	tmp = info->edges;
+	while (tmp)
+	{
+		if ((r1 == tmp->room1 && r2 == tmp->room2) ||
+				(r1 == tmp->room2 && r2 == tmp->room1))
+			return (0);
+		tmp = tmp->next;
+	}
+	MALL_CHECK(tmp = (t_edge *)malloc(sizeof(t_edge)));
+	tmp->next = info->edges;
+	tmp->room1 = r1;
+	tmp->room2 = r2;
+	info->edges = tmp;
+	return (0);
+}
+
 int			parse_edge(char *line, t_info *info)
 {
 	t_room	*room1;
@@ -24,7 +44,6 @@ int			parse_edge(char *line, t_info *info)
 	ft_free_2arr(arr);
 	if (!room1 || !room2 || room1 == room2)
 		return (2);
-	if (save_edge(room1, room2) || save_edge(room2, room1))
-		return (3);
+	save_edge(info, room1, room2);
 	return (0);
 }
