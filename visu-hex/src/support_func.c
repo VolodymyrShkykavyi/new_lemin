@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "lem_in_vizualizer.h"
 
 int		is_comment(char *str)
 {
@@ -67,13 +67,4 @@ int		is_command(char *str)
 	if (ft_strncmp(str, "##", 2) == 0)
 		return (1);
 	return (0);
-}
-
-t_edge				*get_last_edge(t_edge *edges)
-{
-	t_edge	*edge;
-	edge = edges;
-	while (edge && edge->next)
-		edge = edge->next;
-	return (edge);
 }

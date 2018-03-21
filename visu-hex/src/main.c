@@ -19,6 +19,7 @@ static void	init_info(t_info *info)
 	info->end = NULL;
 	info->rooms = NULL;
 	info->num_rooms = 0;
+	info->ants = 0;
 }
 
 int		main(int argc, char **argv)
@@ -27,23 +28,24 @@ int		main(int argc, char **argv)
 	t_info	info;
 	void	*image;
 
-	if (!(mlx_info = init_mlx_and_img(1024, 768, "lem_in visualization")))
+	/*if (!(mlx_info = init_mlx_and_img(1024, 768, "lem_in visualization")))
 	{
 		ft_putstr("can't crate window\n");
 		return (0);
-	}
+	}*/
 	init_info(&info);
 	read_data(&info);
 
 
+	printf("ant num: %jd\n", info.ants);
+	print_rooms(&info);
 
 
 
 
 
 
-
-
+/*
 	run_hooks(mlx_info);
 
 
@@ -87,6 +89,6 @@ int		main(int argc, char **argv)
 	image = mlx_xpm_file_to_image(mlx_info->mlx_ptr, "img/xpm/ant_go_right100x100.xpm", &h, &w);
 	mlx_put_image_to_window(mlx_info->mlx_ptr, mlx_info->win_ptr, image, 450, 400);
 
-	mlx_loop(mlx_info->mlx_ptr);
-
+	//mlx_loop(mlx_info->mlx_ptr);
+*/
 }

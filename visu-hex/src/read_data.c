@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "lem_in_vizualizer.h"
 
 void		get_ant_num(t_info *info)
 {
 	char	*line;
 
-	get_next_line(info->fd, &line);
-	info->ant_num = (uintmax_t)ft_atoi(line);
+	get_next_line(0, &line);
+	info->ants = (uintmax_t)ft_atoi(line);
 	ft_strdel(&line);
 }
 
@@ -27,20 +27,17 @@ int			parse_command(char **line, t_info *info)
 	if (ft_strcmp("##start", *line) == 0)
 	{
 		ft_strdel(line);
-		if (get_next_line(info->fd, line) <= 0)
+		if (get_next_line(0, line) <= 0)
 			print_error("can't read file");
+		parse_room(*line, info);
 		info->start = info->rooms;
 	}
 	else if (ft_strcmp("##end", *line) == 0)
 	{
-		ft_putendl(*line);
 		ft_strdel(line);
-		if (get_next_line(info->fd, line) <= 0)
+		if (get_next_line(0, line) <= 0)
 			print_error("can't read file");
-		if (info->end)
-			return (1);
-		if (!is_room(*line) || parse_room(*line, info))
-			return (1);
+		parse_room(*line, info);
 		info->end = info->rooms;
 	}
 	return (0);
@@ -55,7 +52,7 @@ static int	parse_line(char **line, t_info *info)
 	else if (is_room(*line))
 		return (parse_room(*line, info));
 	else if (is_edge(*line))
-		return (parse_edge(*line, info));
+		return (/*parse_edge(*line, info)*/0);
 	else
 		return (1);
 }
@@ -66,15 +63,18 @@ void	read_data(t_info *info)
 	int			ret;
 
 	get_ant_num(info);
-	while ((ret = get_next_line(info->fd, &line)))
+	while ((ret = get_next_line(0, &line)))
 	{
 		if (ret < 0)
 			print_error("can't read data");
 		if (strcmp(line, "ERROR") == 0)
 			exit(0);
-		if (parse_line(&line, info, &room_parsed))
+
+		printf("%s\n", line);
+		if (parse_line(&line, info))
 			break ;
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
+
 }

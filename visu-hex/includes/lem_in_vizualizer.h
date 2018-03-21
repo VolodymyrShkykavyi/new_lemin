@@ -12,6 +12,7 @@
 
 #ifndef LEM_IN_VIZUALIZER_H
 # define LEM_IN_VIZUALIZER_H
+# define MALL_CHECK(x) if (!(x)) exit (1)
 
 # include "ft_mlx_image.h"
 # include "../../libft/includes/libft.h"
@@ -29,13 +30,21 @@ typedef struct		s_room
 
 typedef struct		s_info
 {
-	uintmax_t		ant_num;
-	int 			num_rooms;
+	uintmax_t		ants;
+	uintmax_t		num_rooms;
 	t_room			*rooms;
 	t_room			*start;
 	t_room			*end;
 }					t_info;
 
 void		run_hooks(t_mlx *mlx_info);
-void	read_data(t_info *info);
+void   read_data(t_info *info);
+int			parse_room(char *line, t_info *info);
+int		is_comment(char *str);
+int		is_edge(char *str);
+int		is_room(char *str);
+int		is_command(char *str);
+void	print_error(char *str);
+void 	print_rooms(t_info *info);
+
 #endif
