@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in_visualizer.h"
+#include "lem_in_vizualizer.h"
 
 t_ant	*find_ant(t_all *all, uintmax_t name)
 {
