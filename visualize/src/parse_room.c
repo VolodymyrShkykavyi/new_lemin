@@ -22,15 +22,15 @@ static void	get_room_img(t_room	*room)
 
 	res = rand() % 5 + 2;
 	if (res == 2)
-		ft_strcpy(room->src, "img/xpm/island2_100x100.xpm");
+		ft_strcpy(room->src, "visualize/img/xpm/island2_100x100.xpm");
 	else if (res == 3)
-		ft_strcpy(room->src, "img/xpm/island3_100x100.xpm");
+		ft_strcpy(room->src, "visualize/img/xpm/island3_100x100.xpm");
 	else if (res == 4)
-		ft_strcpy(room->src, "img/xpm/island4_100x100.xpm");
+		ft_strcpy(room->src, "visualize/img/xpm/island4_100x100.xpm");
 	else if (res == 5)
-		ft_strcpy(room->src, "img/xpm/island5_100x100.xpm");
+		ft_strcpy(room->src, "visualize/img/xpm/island5_100x100.xpm");
 	else
-		ft_strcpy(room->src, "img/xpm/island6_100x100.xpm");
+		ft_strcpy(room->src, "visualize/img/xpm/island6_100x100.xpm");
 }
 
 static void save_min_max_coord(t_room *room, t_info *info)

@@ -52,7 +52,44 @@ typedef struct		s_mlx
 	t_img			img;
 }					t_mlx;
 
+typedef struct	s_line
+{
+	int			dx;
+	int			dy;
+	int			dirx;
+	int			diry;
+}				t_line;
+
+typedef struct	s_gradient
+{
+	float		r;
+	float		g;
+	float		b;
+	float		dr;
+	float		dg;
+	float		db;
+}				t_gradient;
+
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+	int			z;
+	int			color;
+}				t_point;
+
+
 void				init_img_struct(t_mlx *mlx, int width, int height);
 void				put_pixel_to_img(t_img *img, int x, int y, int color);
 t_mlx				*init_mlx_and_img(int width, int height, char *title);
+void			draw_gradient_bresenham_line(t_mlx *mlx, t_point p1,
+											 t_point p2);
+int				getnext_color_gradient(t_gradient *grad);
+void			init_lineparams(t_line *line, t_point *p1, t_point *p2);
+void			init_gradientparams(t_gradient *grad, t_point *p1,
+										t_point *p2);
+unsigned char	rgb_get_bvalue(int color);
+int				rgb_get_color(int r, int g, int b);
+unsigned char	rgb_get_gvalue(int color);
+unsigned char	rgb_get_rvalue(int color);
 #endif

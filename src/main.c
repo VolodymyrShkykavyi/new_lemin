@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 	init_info(fd, &info);
 	read_file(&info);
 	valid_and_set_weight(&info);
-	find_ways(&info); //2 leaks
+	find_ways(&info);
 	if (DEBUG)
 	{
 		print_rooms(&info);
@@ -48,6 +48,8 @@ int		main(int argc, char **argv)
 		print_ways(info.ways);
 		ft_putchar_fd('\n', 2);
 	}
+	print_rooms(&info);
+	print_ways(info.ways);
 	print_result(&info);
 	return (0);
 }

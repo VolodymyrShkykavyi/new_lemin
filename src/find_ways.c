@@ -105,19 +105,21 @@ void				find_ways(t_info *info)
 		way_arr[num_way].edges->room = info->end;
 		way_arr[num_way].edges->next = get_minweight_edge(info->end->edges);
 		way_arr[num_way].len = 0;
+		way_arr[num_way].next = NULL;
 		if (way_arr[num_way].edges->next)
 			get_new_way(&(way_arr[num_way]), info);
 		num_way++;
 	}
 	num_way = -1;
 	while (++num_way < info->end->num_edges)
+	{
 		if (!way_arr[num_way].len)
 			get_new_way(&(way_arr[num_way]), info);
+	}
+	save_ways(&way_arr[0], info);
 	while (--num_way >= 0)
 		if (!way_arr[num_way].len)
 		{
 			free(way_arr[num_way].edges);
-
 		}
-	save_ways(&way_arr[0], info);
 }

@@ -13,8 +13,9 @@
 #ifndef LEM_IN_VIZUALIZER_H
 # define LEM_IN_VIZUALIZER_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
-# define IMG_W 50
-# define IMG_H 50
+# define IMG_W 110
+# define IMG_H 110
+# define OFFSET 30
 
 # include "ft_mlx_image.h"
 # include "../../libft/includes/libft.h"
@@ -43,6 +44,7 @@ typedef struct		s_map
 	intmax_t				min_y;
 	intmax_t				max_x;
 	intmax_t				max_y;
+	int 					print_name;
 }									t_map;
 
 typedef struct		s_info
@@ -56,7 +58,14 @@ typedef struct		s_info
 	t_map				map;
 }					t_info;
 
-void		run_hooks(t_mlx *mlx_info);
+typedef struct		s_all
+{
+	t_info			*info;
+	t_mlx			*mlx;
+	uintmax_t		ant_step;
+}					t_all;
+
+void		run_hooks(t_mlx *mlx_info, t_info *info);
 void   read_data(t_info *info);
 int			parse_room(char *line, t_info *info);
 int			parse_edge(char *line, t_info *info);
@@ -68,5 +77,9 @@ t_room		*find_room(char *name, t_info *info);
 void	print_error(char *str);
 void 	print_rooms(t_info *info);
 void print_edges(t_info *info);
+void	lemin_draw_edges(t_info *info, t_mlx *mlx);
+void	lemin_draw_rooms(t_info *info, t_mlx *mlx);
+void	scale_rooms_coord(t_info *info);
+int 	ant_move(t_all *all);
 
 #endif
