@@ -41,14 +41,12 @@ t_edge				*get_minweight_edge(t_edge *end_edges)
 	return (new_edge);
 }
 
-
 void				delete_way(t_way *way)
 {
 	t_edge	*edge;
 	t_edge	*prev;
 
 	way->len = 0;
-
 	if (!way->edges)
 		return ;
 	edge = way->edges->next;
@@ -60,7 +58,6 @@ void				delete_way(t_way *way)
 		free(prev);
 	}
 	way->edges->next = NULL;
-
 }
 
 void				get_new_way(t_way *way, t_info *info)
@@ -70,6 +67,7 @@ void				get_new_way(t_way *way, t_info *info)
 
 	last_e = get_last_edge(way->edges);
 	last_e->room->visited = 1;
+	way->len = 0;
 	while (1)
 	{
 		min_edge = get_minweight_edge(last_e->room->edges);
@@ -104,18 +102,14 @@ void				find_ways(t_info *info)
 		MALL_CHECK(way_arr[num_way].edges = (t_edge *)malloc(sizeof(t_edge)));
 		way_arr[num_way].edges->room = info->end;
 		way_arr[num_way].edges->next = get_minweight_edge(info->end->edges);
-		way_arr[num_way].len = 0;
-		way_arr[num_way].next = NULL;
 		if (way_arr[num_way].edges->next)
 			get_new_way(&(way_arr[num_way]), info);
 		num_way++;
 	}
 	num_way = -1;
 	while (++num_way < info->end->num_edges)
-	{
 		if (!way_arr[num_way].len)
 			get_new_way(&(way_arr[num_way]), info);
-	}
 	save_ways(&way_arr[0], info);
 	while (--num_way >= 0)
 		if (!way_arr[num_way].len)

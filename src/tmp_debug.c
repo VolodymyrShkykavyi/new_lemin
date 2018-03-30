@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
-#include <stdio.h>
-void 	print_rooms(t_info *info)
+
+void		print_rooms(t_info *info)
 {
 	t_room *room;
 	t_edge *edge;
 
 	room = info->rooms;
-	dprintf(2, "rooms:\n");
+	dprintf(2, "\nrooms:\n");
 	while (room)
 	{
 		if (room == info->start)
@@ -27,24 +27,21 @@ void 	print_rooms(t_info *info)
 			dprintf(2, "%-19s", "\033[33m*end*\033[0m");
 		else
 			dprintf(2, "%10c", ' ');
-		if (room->num_edges <= 1 && room != info->start && room != info->end)
-			dprintf(2, "\033[31m");
-		dprintf(2, "name: %-20s |x: %-3d |y: %-3d |weight: %-4d |edge_num: %-5d edges{", room->name, room->x, room->y,
-			   room->weight, room->num_edges);
+		dprintf(2, "name: %-20s |x: %-3d |y: %-3d |weight: %-4d "
+		"|edge_num: %-5d edges{", room->name, room->x, room->y,
+			room->weight, room->num_edges);
 		edge = room->edges;
 		while (edge)
 		{
 			dprintf(2, "[%s(%d)] ", edge->room->name, edge->room->weight);
 			edge = edge->next;
 		}
-		dprintf(2, "}\n");
-		dprintf(2, "\033[0m");
+		dprintf(2, "}\n\033[0m");
 		room = room->next;
 	}
-
 }
 
-void	print_ways(t_way *ways)
+void		print_ways(t_way *ways)
 {
 	t_way	*way;
 	t_edge	*edge;

@@ -33,11 +33,9 @@ void		get_ant_num(t_info *info)
 
 int			parse_command(char **line, t_info *info)
 {
-	if ((*line)[2] == '#')
-		return (2);
-	else if (ft_strcmp("##start", *line) == 0)
+	ft_putendl(*line);
+	if (ft_strcmp("##start", *line) == 0)
 	{
-		ft_putendl(*line);
 		ft_strdel(line);
 		if (get_next_line(info->fd, line) <= 0)
 			print_error("can't read file");
@@ -49,7 +47,6 @@ int			parse_command(char **line, t_info *info)
 	}
 	else if (ft_strcmp("##end", *line) == 0)
 	{
-		ft_putendl(*line);
 		ft_strdel(line);
 		if (get_next_line(info->fd, line) <= 0)
 			print_error("can't read file");
@@ -79,7 +76,7 @@ static int	parse_line(char **line, t_info *info, int *room_parsed)
 		return (1);
 }
 
-void	read_file(t_info *info)
+void		read_file(t_info *info)
 {
 	char		*line;
 	int			ret;

@@ -64,14 +64,15 @@ int		is_room(char *str)
 
 int		is_command(char *str)
 {
-	if (ft_strncmp(str, "##", 2) == 0)
+	if (ft_strncmp(str, "##", 2) == 0 && str[2] != '#')
 		return (1);
 	return (0);
 }
 
-t_edge				*get_last_edge(t_edge *edges)
+t_edge	*get_last_edge(t_edge *edges)
 {
 	t_edge	*edge;
+
 	edge = edges;
 	while (edge && edge->next)
 		edge = edge->next;

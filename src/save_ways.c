@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-t_way		*get_longest_way(t_way	*arr, intmax_t size)
+t_way		*get_longest_way(t_way *arr, intmax_t size)
 {
 	t_way	*max_way;
 	t_way	*new_way;
@@ -20,7 +20,7 @@ t_way		*get_longest_way(t_way	*arr, intmax_t size)
 	max_way = NULL;
 	while (--size >= 0)
 	{
-		if (arr[size].len)
+		if (arr[size].len > 0)
 			if (!max_way || max_way->len < arr[size].len)
 				max_way = &arr[size];
 	}
@@ -30,12 +30,12 @@ t_way		*get_longest_way(t_way	*arr, intmax_t size)
 	new_way->len = max_way->len + 1;
 	new_way->next = NULL;
 	new_way->edges = max_way->edges;
-	max_way->len = 0;
+	max_way->len = -1;
 	max_way->edges = NULL;
 	return (new_way);
 }
 
-void 		save_ways(t_way *way_arr, t_info *info)
+void		save_ways(t_way *way_arr, t_info *info)
 {
 	t_way		*longest;
 	t_edge		*edge;
@@ -46,13 +46,6 @@ void 		save_ways(t_way *way_arr, t_info *info)
 		longest = get_longest_way(way_arr, info->end->num_edges);
 		if (!longest)
 			return ;
-		if (info->ways && longest->len == 2 && info->ways->len == 2)
-		{
-			delete_way(longest);
-			free(longest->edges);
-			free(longest);
-			continue ;
-		}
 		longest->next = info->ways;
 		info->ways = longest;
 		edge = info->ways->edges;

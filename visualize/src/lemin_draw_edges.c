@@ -36,18 +36,22 @@ void	lemin_draw_edges(t_info *info, t_mlx *mlx)
 	t_point p2;
 	t_edge	*edge;
 
-	draw_fon(info, mlx);
-	edge = info->edges;
-	p1.color = 0x2d3b7f;
-	p2.color = p1.color;
-	while (edge)
+	if (!info->map.map_drawed)
 	{
-		p1.x = edge->room1->x + 50;
-		p1.y = edge->room1->y + 50;
-		p2.x = edge->room2->x + 50;
-		p2.y = edge->room2->y + 50;
-		edge = edge->next;
-		draw_gradient_bresenham_line(mlx, p1, p2);
+		draw_fon(info, mlx);
+		edge = info->edges;
+		p1.color = 0x2d3b7f;
+		p2.color = p1.color;
+		while (edge)
+		{
+			p1.x = edge->room1->x + 50;
+			p1.y = edge->room1->y + 50;
+			p2.x = edge->room2->x + 50;
+			p2.y = edge->room2->y + 50;
+			edge = edge->next;
+			draw_gradient_bresenham_line(mlx, p1, p2);
+		}
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
+	info->map.map_drawed = 1;
 }

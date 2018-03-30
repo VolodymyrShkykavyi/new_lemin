@@ -12,11 +12,11 @@
 
 #include "lemin.h"
 
-int 	move_ants(t_info *info)
+int			move_ants(t_info *info)
 {
 	t_way	*way;
 	t_edge	*edge;
-	int 	ret;
+	int		ret;
 
 	ret = 0;
 	way = info->ways;
@@ -41,27 +41,40 @@ int 	move_ants(t_info *info)
 	return (ret);
 }
 
-int 	sent_new_ants(t_info *info, uintmax_t *ant, int was_output)
+static void	print_ant_move(uintmax_t *ant, char *room_name, int *output)
+{
+	ft_printf("L%jd-%s", ++(*ant), room_name);
+	*output = 1;
+}
+
+static int	init_params_sent_new_ants(t_info *info, uintmax_t *ant,
+										intmax_t *min_len, intmax_t *delta)
+{
+	if (*ant >= info->ant_num)
+		return (0);
+	*min_len = info->ways->len;
+	*delta = 0;
+	return (1);
+}
+
+int			sent_new_ants(t_info *info, uintmax_t *ant, int was_output)
 {
 	t_way		*way;
 	t_edge		*edge;
-	uintmax_t			min_len;
-	uintmax_t	delta = 0;
+	intmax_t	min_len;
+	intmax_t	delta;
 
-	if (*ant >= info->ant_num)
+	if (init_params_sent_new_ants(info, ant, &min_len, &delta) == 0)
 		return (0);
 	way = info->ways;
-	min_len = way->len;
 	while (way)
 	{
 		if (was_output)
 			ft_putchar(' ');
 		edge = get_last_edge(way->edges);
-		if ((info->ant_num - *ant - delta + min_len >= way->len + 1) || way->len <= min_len + 1)
-		{
-			ft_printf("L%jd-%s", ++(*ant), edge->room->name);
-			was_output = 1;
-		}
+		if ((info->ant_num - *ant - delta + min_len >=
+				(uintmax_t)(way->len + 1)) || way->len <= min_len + 1)
+			print_ant_move(ant, edge->room->name, &was_output);
 		else
 			return (1);
 		delta += way->len - min_len + 1;
@@ -73,10 +86,10 @@ int 	sent_new_ants(t_info *info, uintmax_t *ant, int was_output)
 	return (1);
 }
 
-void	print_result(t_info *info)
+void		print_result(t_info *info)
 {
 	uintmax_t	ant;
-	int 		ret;
+	int			ret;
 
 	ant = 0;
 	while (1)

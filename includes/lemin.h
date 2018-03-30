@@ -13,7 +13,7 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
-# define DEBUG 0
+# define DEBUG 1
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -42,7 +42,7 @@ typedef struct		s_edge
 typedef struct		s_way
 {
 	t_edge			*edges;
-	uintmax_t		len;
+	intmax_t		len;
 	struct s_way	*next;
 }					t_way;
 

@@ -22,6 +22,7 @@ static void	init_info(t_info *info)
 	info->num_rooms = 0;
 	info->ants = 0;
 	info->map.print_name = 1;
+	info->map.map_drawed = 0;
 }
 
 int		main(int argc, char **argv)

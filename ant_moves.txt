@@ -1,17 +1,7 @@
-L1-r_5
-L1-r_e L2-r_5
-L2-r_e L3-r_5
-L3-r_e L4-r_5
-L4-r_e L5-r_5
-L5-r_e L6-r_5
-L6-r_e L7-r_5
-L7-r_e L8-r_5
-L8-r_e L9-r_5
-L9-r_e L10-r_5
-L10-r_e L11-r_5
-L11-r_e L12-r_5
-L12-r_e L13-r_5
-L13-r_e L14-r_5
-L14-r_e L15-r_5
-L15-r_e L16-r_5
+L1-test L2-r_2 L3-r_5
+L1-r_e L2-r_e L3-r_e L4-test L5-r_2 L6-r_5
+L4-r_e L5-r_e L6-r_e L7-test L8-r_2 L9-r_5
+L7-r_e L8-r_e L9-r_e L10-test L11-r_2 L12-r_5
+L10-r_e L11-r_e L12-r_e L13-test L14-r_2 L15-r_5
+L13-r_e L14-r_e L15-r_e L16-test
 L16-r_e

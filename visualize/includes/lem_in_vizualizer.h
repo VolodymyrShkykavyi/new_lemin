@@ -45,6 +45,7 @@ typedef struct		s_map
 	intmax_t				max_x;
 	intmax_t				max_y;
 	int 					print_name;
+	int 					map_drawed;
 }									t_map;
 
 typedef struct		s_info
