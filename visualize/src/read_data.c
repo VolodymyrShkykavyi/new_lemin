@@ -69,7 +69,6 @@ static void save_ant_moves(void)
 
 	if ((fd = creat("ant_moves.txt", S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) <= 0)
 	{
-		close(fd);
 		print_error("can't create file\n");
 	}
 	while ((ret = get_next_line(0, &line)))

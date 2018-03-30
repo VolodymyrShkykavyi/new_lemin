@@ -14,7 +14,7 @@
 #include "lem_in_vizualizer.h"
 #include <fcntl.h>
 #include <unistd.h>
-
+/*
 int 	ant_move(t_all *all)
 {
 	int 	fd;
@@ -50,15 +50,21 @@ int 	ant_move(t_all *all)
 	{
 		move_arr = ft_strsplit(all_moves[i], '-');
 		room1 = find_room(move_arr[1], all->info);
-		printf("ant to room: %s\n", room1->name);
+		//printf("ant to room: %s\n", room1->name);
 		image = mlx_xpm_file_to_image(all->mlx->mlx_ptr,
 					"visualize/img/xpm/ant_go_left100x100.xpm", &h, &w);
-		printf("get img\n");
+		//printf("get img\n");
 		if (image)
 			mlx_put_image_to_window(all->mlx->mlx_ptr, all->mlx->win_ptr,
 								image, room1->x, room1->y);
 	}
 	all->ant_step++;
 	close(fd);
+	return (1);
+}*/
+
+int 	ant_move(t_all *all)
+{
+
 	return (1);
 }

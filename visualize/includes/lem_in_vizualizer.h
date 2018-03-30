@@ -20,6 +20,8 @@
 # include "ft_mlx_image.h"
 # include "../../libft/includes/libft.h"
 # include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 typedef struct		s_room
 {
@@ -30,6 +32,15 @@ typedef struct		s_room
 	char 			*name;
 	struct s_room	*next;
 }					t_room;
+
+typedef struct		s_ant
+{
+	uintmax_t		name;
+	intmax_t		x;
+	intmax_t		y;
+	t_room			*dest;
+	struct s_ant	*next;
+}					t_ant;
 
 typedef struct		s_edge
 {
@@ -61,9 +72,11 @@ typedef struct		s_info
 
 typedef struct		s_all
 {
+	int 			fd;
 	t_info			*info;
 	t_mlx			*mlx;
 	uintmax_t		ant_step;
+	t_ant			*ants;
 }					t_all;
 
 void		run_hooks(t_mlx *mlx_info, t_info *info);

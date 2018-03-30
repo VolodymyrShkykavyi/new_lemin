@@ -13,7 +13,7 @@
 #ifndef LEMIN_H
 # define LEMIN_H
 # define MALL_CHECK(x) if (!(x)) exit (1)
-# define DEBUG 1
+# define DEBUG 0
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -57,21 +57,15 @@ typedef struct		s_info
 	t_room			*end;
 }					t_info;
 
-
-/*
-** debug
-*/
-
 void				print_rooms(t_info *info);
 void				print_ways(t_way *ways);
-
 void				read_file(t_info *info);
 int					parse_room(char *line, t_info *info);
 t_room				*find_room(char *name, t_info *info);
 void				valid_and_set_weight(t_info *info);
 int					parse_edge(char *line, t_info *info);
 void				find_ways(t_info *info);
-void 				save_ways(t_way *arr, t_info *info);
+void				save_ways(t_way *arr, t_info *info);
 void				print_result(t_info *info);
 void				print_error(char *text);
 void				delete_way(t_way *way);
