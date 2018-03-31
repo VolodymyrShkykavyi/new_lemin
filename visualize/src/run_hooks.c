@@ -24,13 +24,14 @@ int		pressed_key(int key, t_all *all)
 	else if (key == 48)
 	{
 		all->info->map.print_name = (all->info->map.print_name) ? 0 : 1;
-		lemin_draw_edges(all->info, all->mlx);
+		/*lemin_draw_edges(all->info, all->mlx);
 		lemin_draw_rooms(all->info, all->mlx);
 		if (all->ant_step)
 		{
 			all->ant_step--;
 			ant_move(all);
-		}
+		}*/
+		ant_move(all);
 	}
 	else if (key == 49)
 	{
@@ -66,6 +67,7 @@ void		run_hooks(t_mlx *mlx_info, t_info *info)
 	all.mlx = mlx_info;
 	all.ant_step = 0;
 	all.ants = NULL;
+	all.speed = 1;
 	all.fd = open("ant_moves.txt", O_RDONLY);
 	if (all.fd < 0)
 		print_error("can't open file with ant moves\n");

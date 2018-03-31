@@ -73,6 +73,7 @@ typedef struct		s_info
 typedef struct		s_all
 {
 	int 			fd;
+	unsigned int	speed;
 	t_info			*info;
 	t_mlx			*mlx;
 	uintmax_t		ant_step;
@@ -95,5 +96,6 @@ void	lemin_draw_edges(t_info *info, t_mlx *mlx);
 void	lemin_draw_rooms(t_info *info, t_mlx *mlx);
 void	scale_rooms_coord(t_info *info);
 int 	ant_move(t_all *all);
+t_ant	*find_ant(t_all *all, uintmax_t name);
 
 #endif
