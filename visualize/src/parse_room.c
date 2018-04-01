@@ -16,9 +16,9 @@
 ** rand() % (max_number + 1 - minimum_number) + minimum_number
 */
 
-static void	get_room_img(t_room	*room)
+static void	get_room_img(t_room *room)
 {
-	int 	res;
+	int		res;
 
 	res = rand() % 5 + 2;
 	if (res == 2)
@@ -33,7 +33,7 @@ static void	get_room_img(t_room	*room)
 		ft_strcpy(room->src, "visualize/img/xpm/island6_100x100.xpm");
 }
 
-static void save_min_max_coord(t_room *room, t_info *info)
+static void	save_min_max_coord(t_room *room, t_info *info)
 {
 	if (info->map.min_x > room->x)
 		info->map.min_x = room->x;
@@ -53,7 +53,6 @@ int			parse_room(char *line, t_info *info)
 	MALL_CHECK(arr = ft_strsplit(line, ' '));
 	MALL_CHECK(room = (t_room *)malloc(sizeof(t_room)));
 	MALL_CHECK(room->name = ft_strdup(arr[0]));
-
 	room->x = (int)ft_atoi(arr[1]) * IMG_W;
 	room->y = (int)ft_atoi(arr[2]) * IMG_H;
 	room->next = info->rooms;

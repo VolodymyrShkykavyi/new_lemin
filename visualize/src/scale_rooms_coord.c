@@ -12,7 +12,7 @@
 
 #include "lem_in_vizualizer.h"
 
-static void 	decrease_len_between_change(t_info *info, int dx, int dy)
+static void		decrease_len_between_change(t_info *info, int dx, int dy)
 {
 	t_room	*room;
 
@@ -23,14 +23,13 @@ static void 	decrease_len_between_change(t_info *info, int dx, int dy)
 	}
 }
 
-
-static void	decrease_len_between(t_info *info)
+static void		decrease_len_between(t_info *info)
 {
 	t_room	*main;
 	t_room	*tmp;
-	int dx;
-	int dy;
-	int delta;
+	int		dx;
+	int		dy;
+	int		delta;
 
 	dx = 0;
 	dy = 0;
@@ -53,7 +52,7 @@ static void	decrease_len_between(t_info *info)
 	decrease_len_between_change(info, dx, dy);
 }
 
-void	scale_rooms_coord(t_info *info)
+void			scale_rooms_coord(t_info *info)
 {
 	t_room	*room;
 

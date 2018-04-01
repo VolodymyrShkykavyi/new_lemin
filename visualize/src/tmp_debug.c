@@ -13,7 +13,7 @@
 #include "lem_in_vizualizer.h"
 #include <stdio.h>
 
-void 	print_rooms(t_info *info)
+void	print_rooms(t_info *info)
 {
 	t_room *room;
 
@@ -27,7 +27,6 @@ void 	print_rooms(t_info *info)
 			dprintf(2, "%-19s", "\033[33m*end*\033[0m");
 		else
 			dprintf(2, "%10c", ' ');
-
 		dprintf(2, "name: %-20s |x: %-3jd |y: %-3jd | map: %s\n", room->name,
 		room->x, room->y, room->src + 8);
 		dprintf(2, "\033[0m");
@@ -35,12 +34,13 @@ void 	print_rooms(t_info *info)
 	}
 }
 
-void print_edges(t_info *info)
+void	print_edges(t_info *info)
 {
 	t_edge	*edge;
 
 	edge = info->edges;
-	while (edge) {
+	while (edge)
+	{
 		dprintf(2, "{[%s] - [%s]}\n", edge->room1->name, edge->room2->name);
 		edge = edge->next;
 	}

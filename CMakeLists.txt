@@ -22,7 +22,7 @@ add_executable(lem_in src/main.c
         visualize/src/main.c visualize/src/run_hooks.c visualize/src/lemin_draw_edges.c visualize/src/lemin_draw_rooms.c visualize/src/scale_rooms_coord.c
 
         visualize/includes/lem_in_visualizer.h
-        visualize/src/ant_move.c)
+        visualize/src/ant_move.c visualize/src/lemin_draw_ants.c visualize/src/redraw_all.c)
 
 add_library(libft STATIC IMPORTED) # Создание статической библиотеки
 find_library(_mlx mlx)

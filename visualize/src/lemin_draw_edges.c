@@ -14,8 +14,8 @@
 
 static void	draw_fon(t_info *info, t_mlx *mlx)
 {
-	t_point p1;
-	t_point p2;
+	t_point	p1;
+	t_point	p2;
 
 	p1.x = -1;
 	p1.y = 0;
@@ -30,7 +30,7 @@ static void	draw_fon(t_info *info, t_mlx *mlx)
 	}
 }
 
-void	lemin_draw_edges(t_info *info, t_mlx *mlx)
+void		lemin_draw_edges(t_info *info, t_mlx *mlx)
 {
 	t_point p1;
 	t_point p2;
@@ -52,6 +52,7 @@ void	lemin_draw_edges(t_info *info, t_mlx *mlx)
 			draw_gradient_bresenham_line(mlx, p1, p2);
 		}
 	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
+						mlx->img.img_ptr, 0, 0);
 	info->map.map_drawed = 1;
 }

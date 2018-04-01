@@ -39,6 +39,7 @@ typedef struct		s_ant
 	intmax_t		x;
 	intmax_t		y;
 	t_room			*dest;
+	void			*img;
 	struct s_ant	*next;
 }					t_ant;
 
@@ -78,6 +79,8 @@ typedef struct		s_all
 	t_mlx			*mlx;
 	uintmax_t		ant_step;
 	t_ant			*ants;
+	void			*img_ant_left;
+	void			*img_ant_right;
 }					t_all;
 
 void		run_hooks(t_mlx *mlx_info, t_info *info);
@@ -97,5 +100,7 @@ void	lemin_draw_rooms(t_info *info, t_mlx *mlx);
 void	scale_rooms_coord(t_info *info);
 int 	ant_move(t_all *all);
 t_ant	*find_ant(t_all *all, uintmax_t name);
-
+int	draw_ants(t_all *all, int move_ant);
+char	**get_new_moves(t_all *all);
+void		redraw_all(t_all *all);
 #endif

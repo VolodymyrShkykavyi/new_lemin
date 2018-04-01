@@ -4,7 +4,8 @@ FLAGS =  -O2 #-Wall -Werror -Wextra
 O_FILES = $(addprefix $(OBJ_DIR)/, $(C_FILES:$(SRC_DIR)/%.c=%.o))
 C_FILES = $(addprefix $(SRC_DIR)/, main.c run_hooks.c read_data.c parse_room.c \
 			support_func.c print_error.c parse_edge.c tmp_debug.c lemin_draw_edges.c \
-			lemin_draw_rooms.c scale_rooms_coord.c find_ant.c ant_move.c \
+			lemin_draw_rooms.c scale_rooms_coord.c find_ant.c ant_move.c lemin_draw_ants.c \
+			redraw_all.c \
 			$(addprefix graphics/, init_img_struct.c init_mlx_and_img.c put_pixel_to_img.c \
 			additional_functions.c draw_gradient_line.c rgb_get_bvalue.c rgb_get_color.c \
 			rgb_get_gvalue.c rgb_get_rvalue.c))

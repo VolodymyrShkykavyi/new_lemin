@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-void		get_ant_num(t_info *info)
+void			get_ant_num(t_info *info)
 {
 	char	*line;
 
@@ -23,9 +23,8 @@ void		get_ant_num(t_info *info)
 	ft_strdel(&line);
 }
 
-int			parse_command(char **line, t_info *info)
+int				parse_command(char **line, t_info *info)
 {
-
 	if (ft_strcmp("##start", *line) == 0)
 	{
 		ft_strdel(line);
@@ -47,7 +46,7 @@ int			parse_command(char **line, t_info *info)
 	return (0);
 }
 
-static int	parse_line(char **line, t_info *info)
+static int		parse_line(char **line, t_info *info)
 {
 	if (is_comment(*line))
 		return (0);
@@ -61,16 +60,15 @@ static int	parse_line(char **line, t_info *info)
 		return (1);
 }
 
-static void save_ant_moves(void)
+static void		save_ant_moves(void)
 {
 	int		fd;
 	int		ret;
-	char 	*line;
+	char	*line;
 
-	if ((fd = creat("ant_moves.txt", S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) <= 0)
-	{
+	if ((fd = creat("ant_moves.txt",
+					S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) <= 0)
 		print_error("can't create file\n");
-	}
 	while ((ret = get_next_line(0, &line)))
 	{
 		if (ret < 0)
@@ -83,7 +81,7 @@ static void save_ant_moves(void)
 	ft_strdel(&line);
 }
 
-void	read_data(t_info *info)
+void			read_data(t_info *info)
 {
 	char		*line;
 	int			ret;

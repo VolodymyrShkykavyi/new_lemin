@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_2arr.c                                     :+:      :+:    :+:   */
+/*   redraw_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vshkykav <vshkykav@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 16:17:00 by vshkykav          #+#    #+#             */
-/*   Updated: 2018/01/18 16:17:00 by vshkykav         ###   ########.fr       */
+/*   Created: 2018/04/01 17:03:00 by vshkykav          #+#    #+#             */
+/*   Updated: 2018/04/01 17:03:00 by vshkykav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "lem_in_vizualizer.h"
 
-void	ft_free_2arr(char **arr)
+void		redraw_all(t_all *all)
 {
-	size_t	i;
-
-	if (!arr)
-		return ;
-	i = -1;
-	while (arr[++i])
-	{
-		free(arr[i]);
-		arr[i] = NULL;
-	}
-	free(arr);
-	arr = NULL;
+	lemin_draw_edges(all->info, all->mlx);
+	lemin_draw_rooms(all->info, all->mlx);
+	draw_ants(all, 0);
 }

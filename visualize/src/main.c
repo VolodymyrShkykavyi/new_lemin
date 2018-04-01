@@ -25,24 +25,18 @@ static void	init_info(t_info *info)
 	info->map.map_drawed = 0;
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_mlx	*mlx_info;
 	t_info	info;
 	void	*image;
 
-
 	init_info(&info);
 	read_data(&info);
 	scale_rooms_coord(&info);
-
-	//printf("ant num: %jd\n", info.ants);
-	//print_rooms(&info);
-	//print_edges(&info);
-	//printf("min_x: %jd\tmin_y:%jd\nmax_x: %jd\tmax_y: %jd\n", info.map.min_x,
-	//			info.map.min_y, info.map.max_x, info.map.max_y);
-
-	if (!(mlx_info = init_mlx_and_img(info.map.max_x + IMG_W, info.map.max_y + IMG_H, "lem_in visualization")))
+	if (!(mlx_info = init_mlx_and_img(info.map.max_x + IMG_W,
+									info.map.max_y + IMG_H,
+									"lem_in visualization")))
 	{
 		ft_putstr("can't crate window\n");
 		return (0);
